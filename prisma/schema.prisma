@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String     @id @unique @default(uuid())
+  name       String
+  email      String     @unique
+  password   String
+  created_at DateTime   @default(now())
+  updated_at DateTime   @default(now())
+  exchanges  Exchange[]
+
+  @@map("users")
+}
+
+model Exchange {
+  id         String   @id @default(uuid())
+  tickers    String
+  name       String
+  price      Decimal
+  quantity   Decimal
+  date       DateTime
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  User       User?    @relation(fields: [userId], references: [id])
+  userId     String?
+
+  @@map("exchanges")
+}

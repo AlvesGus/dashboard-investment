@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "typeRoots": [
+      "./node_modules/@types",
+      "./fastify.d.ts" // Adicione o diretório onde está o seu arquivo fastify.d.ts
+    ],
+  }
+}

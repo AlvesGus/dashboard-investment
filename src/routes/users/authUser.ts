@@ -26,7 +26,7 @@ export async function authUser(server: FastifyInstance) {
       return reply.status(401).send('Usuário não existe.');
     } 
 
-    const checkPassword = await bcrypt.compareSync(password, user.password);
+    const checkPassword = await bcrypt.compare(password, user.password);
     if (!checkPassword) {
       return reply.status(401).send('Senha incorreta.');
     }
@@ -39,7 +39,7 @@ export async function authUser(server: FastifyInstance) {
 }
 
 export async function verifyJWT(request: FastifyRequest, reply: FastifyReply) {
-  const token = request.headers["x-access-token"];
+  const token = request.headers["x-access-token"] as string
 
   if (!token) {
     return reply.status(401).send('Token não fornecido.');

@@ -20,16 +20,17 @@ model User {
 }
 
 model Exchange {
-  id         String   @id @default(uuid())
-  tickers    String
-  name       String
-  price      Decimal
-  quantity   Decimal
-  date       DateTime
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now())
-  User       User?    @relation(fields: [userId], references: [id])
-  userId     String?
+  id            String   @id @default(uuid())
+  tickers       String
+  name          String
+  price         Decimal
+  quantity      Decimal
+  date          DateTime
+  exchange_type String   @default("Ação")
+  created_at    DateTime @default(now())
+  updated_at    DateTime @default(now())
+  User          User?    @relation(fields: [userId], references: [id])
+  userId        String?
 
   @@map("exchanges")
 }

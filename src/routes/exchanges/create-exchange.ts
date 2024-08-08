@@ -16,12 +16,13 @@ export async function createNewExchange(server: FastifyInstance) {
         price: z.number(),
         quantity: z.number(),
         date: z.string(),
+        exchange_type: z.string()
       })
     },
   }, async (request, reply) => {
-    const { tickers, name, price, quantity, date,  } = request.body
+    const { tickers, name, price, quantity, date, exchange_type  } = request.body
 
-    if (!tickers || !name || !price || !quantity || !date) {
+    if (!tickers || !name || !price || !quantity || !date || !exchange_type) {
       return reply.status(400).send('Favor inserir todos os campos.');
     }
 
@@ -37,7 +38,8 @@ export async function createNewExchange(server: FastifyInstance) {
         price,
         quantity,
         date,
-        userId
+        userId,
+        exchange_type
       }
     })
     return reply.status(201).send(ticker)

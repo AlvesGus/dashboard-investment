@@ -1,4 +1,6 @@
 import fastify from "fastify";
+import fastifyCookie from "fastify-cookie";
+
 import { validatorCompiler, serializerCompiler } from 'fastify-type-provider-zod'
 import { createNewExchange } from "./routes/exchanges/create-exchange";
 import { listExchange } from './routes/exchanges/list-exchange'
